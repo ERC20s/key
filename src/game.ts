@@ -255,3 +255,16 @@ moon.addComponent(
     distance: 150,  }
   )
 )
+
+const land1 = new Entity()
+engine.addEntity(land1)
+land1.addComponent(new GLTFShape("models/land1.glb"))
+land1.addComponent(new Transform({ position: new Vector3(150, 1, 79), rotation: Quaternion.Euler(0, 90, 0) }));
+land1.addComponent(
+  new OnPointerDown(() => {
+    openExternalURL("https://crowdloan.astar.network/?referral=1Hi73C8EuTjhJ2MsSppYH2qTbQFbJHrG9E9cUhzorYZHZ97#stake-dot")
+  },
+    { hoverText: "Buy this 3x2 LAND for 24 ETH",
+    distance: 50, }
+)
+)
