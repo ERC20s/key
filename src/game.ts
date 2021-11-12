@@ -259,10 +259,35 @@ moon.addComponent(
 const land1 = new Entity()
 engine.addEntity(land1)
 land1.addComponent(new GLTFShape("models/land1.glb"))
-land1.addComponent(new Transform({ position: new Vector3(150, 1, 79), rotation: Quaternion.Euler(0, 90, 0) }));
+land1.addComponent(new Transform({ position: new Vector3(190, 1, 79), rotation: Quaternion.Euler(0, 90, 0) }));
 land1.addComponent(
   new OnPointerDown(() => {
     openExternalURL("https://opensea.io/bundles/3x2-good-price-good-location-a6X")
+  },
+    { hoverText: "Buy this 3x2 LAND for only 24 ETH",
+    distance: 50, }
+)
+)
+
+const land2 = new Entity()
+engine.addEntity(land2)
+land2.addComponent(new GLTFShape("models/land1.glb"))
+land2.addComponent(new Transform({ position: new Vector3(219, 1, 33), rotation: Quaternion.Euler(0, 180, 0) }));
+land2.addComponent(
+  new OnPointerDown(() => {
+    openExternalURL("https://opensea.io/bundles/3x2-good-price-good-location-Lmk")
+  },
+    { hoverText: "Buy this 3x2 LAND for only 24 ETH",
+    distance: 50, }
+)
+)
+const land3 = new Entity()
+engine.addEntity(land3)
+land3.addComponent(new GLTFShape("models/land1.glb"))
+land3.addComponent(new Transform({ position: new Vector3(180, 1, 1), rotation: Quaternion.Euler(0, 270, 0) }));
+land3.addComponent(
+  new OnPointerDown(() => {
+    openExternalURL("https://opensea.io/bundles/3x2-good-price-aDO")
   },
     { hoverText: "Buy this 3x2 LAND for only 24 ETH",
     distance: 50, }
