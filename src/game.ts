@@ -249,7 +249,7 @@ moon.addComponent(new Transform({ position: new Vector3(5, 5, 5), rotation: Quat
 moon.addComponent(
   new OnPointerDown(
     (_e) => {
-      RestrictedActions.movePlayerTo({ x: 22, y: 599, z: 22 }, { x: 1, y: 1, z: 1 })
+      RestrictedActions.movePlayerTo({ x: 40, y: 599, z: 40 }, { x: 1, y: 1, z: 40 })
     },
     { hoverText: "To the moon!",
     distance: 150,  }
