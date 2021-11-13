@@ -5,6 +5,25 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
 const imageTexture = new Texture('images/UI_Guestbook.png')
 const canvas = new UICanvas()
 
+// Create a group to track all entities with a Transform component
+const myGroup = engine.getComponentGroup(Transform)
+
+// Define a System
+export class RotatorSystem implements ISystem {
+  // The update function runs on every frame of the game loop
+  update() {
+    // The function iterates over all the entities in myGroup
+    for (let entity of myGroup.entities) {
+      const transform = entity.getComponent(Transform)
+      transform.rotate(Vector3.Left(), 0.1)
+    }
+  }
+}
+
+// Add the system to the engine
+engine.addSystem(new RotatorSystem())
+
+
 const inventoryContainer = new UIContainerStack(canvas)
 inventoryContainer.adaptWidth = true
 inventoryContainer.adaptHeight = true
@@ -213,11 +232,13 @@ for (let i = 0; i < songs.length; i++) {
     pressButton(i-1)
     }
   )
+
+
   const spin2 = new Entity();
   engine.addEntity(spin2);
   spin2.addComponent(audioSource)
   spin2.addComponent(new GLTFShape("models/astar.glb"));
-  spin2.addComponent(new Transform({ position: new Vector3(41, 0, 42.25), scale: new Vector3(4, 4, 4) }));
+  spin2.addComponent(new Transform({ position: new Vector3(41, 0, 42.25), scale: new Vector3(4, 4, 4), rotation: Quaternion.Euler(0, 90, 0) }));
 
   spin2.addComponent(
     new OnPointerDown(() => {
