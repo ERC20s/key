@@ -135,8 +135,15 @@ sname4.fontSize = 25
 sname4.color = Color4.Black()
 sname4.visible = false
 
-
-
+const dotuser = new UIText(canvas)
+dotuser.value = "DOT ADDRESS not saved"
+dotuser.width = 0
+dotuser.height = 0
+dotuser.hAlign = "center"
+dotuser.vAlign = "top"
+dotuser.fontSize = 25
+dotuser.color = Color4.Blue()
+dotuser.visible = false
 const Polkaexplainer = new UIImage(canvas, image2)
 Polkaexplainer.width = 500
 Polkaexplainer.height = 500
@@ -179,12 +186,10 @@ textInput.vAlign = "top"
 textInput.hAlign = "left"
 textInput.fontSize = 22
 textInput.placeholder = "Paste your polkadat address here!"
-textInput.placeholderColor = Color4.Gray()
+textInput.placeholderColor = Color4.Blue()
 textInput.positionY = "-215px"
 textInput.positionX = "210"
 textInput.visible = false
-
-
 
 
 
@@ -199,36 +204,46 @@ Submitbutton.sourceWidth = 500
 Submitbutton.sourceHeight = 75
 Submitbutton.visible = false
 
-let pol = ""
+    export function showInput(titleText: string, inputNameText: string, placeHolder: string, onTextSubmit: (text: string) => void): void {
+        textInput.visible = true
+        textInput.placeholder = "placeHolder"
+        textInput.isPointerBlocker = true
+        textInput.onTextSubmit = new OnTextSubmit(({ text }) => {
+        })
+    }
 
-const text = new UIText(textInput)
+var namee;
+
+export const text = new UIText(textInput)
 textInput.onTextSubmit = new OnTextSubmit((x) => {
-  pol = x.text
+  text.value = "Welcome " + x.text + ", click sign to submit your entry! "
+  text.width = "100%"
+  text.height = "20px"
+  textInput.height = "63px"
+  text.vAlign = "top"
+  text.hAlign = "left"
+  dotuser.value = "welcome " + x.text
+  Submitbutton.visible = true
+
 
 })
 
-const dotuser = new UIText(canvas)
-dotuser.width = 0
-dotuser.height = 0
-dotuser.hAlign = "top"
-dotuser.vAlign = "center"
-dotuser.fontSize = 25
-dotuser.color = Color4.Blue()
-dotuser.visible = false
-
 Submitbutton.onClick = new OnClick(() => {
-  Polkaexplainer.visible = false
+  Polkaexplainer.visible = true
   Polkago.visible = false
-  Submitbutton.visible = false
-  textInput.visible = false
+  Submitbutton.visible = true
+  textInput.visible = true
+  dotuser.visible = true
 
-  }
+}
 )
+
+
 Polkaclose.onClick = new OnClick(() => {
-  Polkaexplainer.visible = false
-  Submitbutton.visible = false
-  textInput.visible = false
-  Polkago.visible = false
+  Polkaexplainer.visible = true
+  Submitbutton.visible = true
+  textInput.visible = true
+  Polkago.visible = true
   dotuser.visible = true
   }
 )
@@ -273,8 +288,8 @@ NextButton1.onClick = new OnClick(() => {
 
 
 const songs: { src: string; name: string }[] = [
-  { src: 'sounds/hiphop.mp3', name: 'Hiphop' },
-  { src: 'sounds/house.mp3', name: 'House' }
+  { src: 'sounds/hipho.mp3', name: 'Hiphop' },
+  { src: 'sounds/hous.mp3', name: 'House' }
 ]
 
 const wall = new Entity();
@@ -461,7 +476,7 @@ myVideoTexture.playing = !myVideoTexture.playing
 )
 
 // const test = "https://video-weaver.vie02.hls.ttvnw.net/v1/playlist/CqYFM77FA7Cfi2a7XkwB-jBEoV9PJs6JEG1Vhazmge-k2teiMfCAl-0yghtP7VrUUKS_smRMCL2FHFRfZL_QLTaMTCSUVUBLMeJZK4wXLOuRb0fDwW3mw62-QYQShgV_JPCUR1dsIIyGONZdZzMpzYWo9LAWYyuxh2rzG1WDCACq_ocTwEouquDnDfHSpOVJNroFzomzS2Bj4-Vpbj9A-fmUMMHHJdmL0VnQNa8diwvVrLGf155VaFmaix4zL92TuImcPsI3VFJjNEVBFyTN-kw4vw19SceWilQ0ZwQh73q1pybbK7lpInARnIQLQQVtlWUoWX3VPVBXz98MYii1RrF4TEa1FKi1vExghP6EAh3t4flrwt9kp_AJgMz0c7Epo39N3_1OHzi1GiBaissiuzFybVoaFh7tIghW01tUb8T-7MgGjOY0OgsbATogqQzTYmSA2pSWJfK2Zy6zfiEDA-5xadgn6uK9v31yKutVc0e4nBpiMUQwryIlivZsSQLCRfdpXqKiHh7YBuCF4pUAPHzvh4tRrBiQqWhmyIEHrlxYjbA5eITonk1_O638pv6oeHUCsGMdAXPxJiXx9kgwUMVHkHHdEzw-wMm2wdUpCVjJl-tnRZyiiESU08_T9kQROIFBGTn6k2QgQ29YO_osmZw8dZJGO2NaR5F5CvXFypbkHcr_B9WNuOlU5s0ZDf_RBQzOa0q4n_X_S3wqz9UJKvXU2S6lXL7gR3cQtGwnHZixXWw9t9-cWWRyhKLSjl4k3zqXLsxpavhBiEkOQAljpfvyTa21sqK8Fz-RdNQBYMFMubyvR5hkb1FhgDMjAQ_4-G2CFRV45fv0Z3tVBRd8dvgVYGgnqGwFTnvafdnzm4Dre6EWpqR3GQ6opyRUdurwM5aplh_K1ztPGgyT5LWz7UdHTZ1zWR0gASoJdXMtd2VzdC0yMKcC.m3u8"
-const myVideoClip = new VideoClip("polka360.mp4"
+const myVideoClip = new VideoClip("https://dclstreams.com/hosted/live/butter/index.m3u8"
 // chaturbate "https://edge242.stream.highwebmedia.com/live\u002Dedge/amlst:projektmelody\u002Dsd\u002D48b68b605fcb762743310b510b427589a69ddf3e36d6aac16de19ea6454219b5_trns_h264/playlist.m3u8"
 // "https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8"
 )
@@ -624,7 +639,7 @@ polka.addComponent(
     a6.addComponent(new GLTFShape("models/moonbeam.glb"));
 
     Polkaexplainer.visible = true
-    Submitbutton.visible = true
+    Submitbutton.visible = false
     textInput.visible = true
     Polkago.visible = true
     Polkaclose.visible = true
