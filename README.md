@@ -38,7 +38,3 @@ const publicKeyRequest = executeTask(async () => {
 Then convert the getUserPublicKey to an EVM address with https://github.com/polkadot-js/common/blob/9fc57a23e898a52afda1ea21c077481bcafa5a49/packages/util-crypto/src/address/addressToEvm.spec.ts
 <br><br>
 </details>
-
-
-
- polkadot
