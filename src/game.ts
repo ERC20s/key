@@ -8,8 +8,6 @@ const image2 = new Texture('images/image2.png')
 const image3 = new Texture('images/submit.png')
 const canvas = new UICanvas()
 
-// import { getCurrentRealm } from '@decentraland/EnvironmentAPI'
-
 
 const inventoryContainer = new UIContainerStack(canvas)
 inventoryContainer.adaptWidth = true
@@ -301,6 +299,9 @@ wall.addComponent(new GLTFShape("models/walls6.glb"));
 wall.addComponent(new Transform({ position: new Vector3(0, 0, 0) }));
 
 
+
+
+
 let buttonArray: IEntity[] = []
 
 for (let i = 0; i < songs.length; i++) {
@@ -391,9 +392,9 @@ land1.addComponent(new GLTFShape("models/land1.glb"))
 land1.addComponent(new Transform({ position: new Vector3(190, 1, 79), rotation: Quaternion.Euler(0, 90, 0) }));
 land1.addComponent(
   new OnPointerDown(() => {
-    openExternalURL("https://opensea.io/bundles/3x2-good-price-good-location-a6X")
+    openExternalURL("https://discord.gg/GJ7EdhFucj")
   },
-    { hoverText: "Rent this 3x2 LAND for only 24 ETH",
+    { hoverText: "Rent this 3x2 LAND for your project!",
     distance: 50, }
 )
 )
@@ -404,9 +405,9 @@ land2.addComponent(new GLTFShape("models/land1.glb"))
 land2.addComponent(new Transform({ position: new Vector3(219, 1, 33), rotation: Quaternion.Euler(0, 180, 0) }));
 land2.addComponent(
   new OnPointerDown(() => {
-    openExternalURL("https://opensea.io/bundles/3x2-good-price-good-location-Lmk")
+    openExternalURL("https://discord.gg/GJ7EdhFucj")
   },
-    { hoverText: "Rent this 3x2 LAND for only 1 ETH",
+    { hoverText: "Rent this 3x2 LAND for your project!",
     distance: 50, }
 )
 )
@@ -416,12 +417,26 @@ land3.addComponent(new GLTFShape("models/land1.glb"))
 land3.addComponent(new Transform({ position: new Vector3(180, 1, 1), rotation: Quaternion.Euler(0, 270, 0) }));
 land3.addComponent(
   new OnPointerDown(() => {
-    openExternalURL("https://opensea.io/bundles/3x2-good-price-aDO")
+    openExternalURL("https://discord.gg/GJ7EdhFucj")
   },
-    { hoverText: "Rent this space!",
+    { hoverText: "Rent this 3x2 LAND for your project!",
     distance: 50, }
 )
 )
+
+const table = new Entity();
+engine.addEntity(table);
+table.addComponent(new GLTFShape("models/table.glb"));
+table.addComponent(new Transform({ position: new Vector3(40, 0, 20) }));
+table.addComponent(
+  new OnPointerDown(() => {
+
+  },
+    { hoverText: "Uno goes here!",
+    distance: 50, }
+)
+)
+
 
 let p = 0
 
