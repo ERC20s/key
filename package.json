@@ -15,11 +15,7 @@
     "decentraland-ecs": "latest"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^1.28.0",
     "decentraland-ecs-utils": "^1.5.2",
-    "express": "^4.17.1",
-    "firebase": "^9.4.1",
-    "twitch-m3u8": "^1.1.4"
   },
   "engines": {
    "node": "10"
