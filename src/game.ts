@@ -6,6 +6,8 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
 const imageTexture = new Texture('images/UI_Guestbook.png')
 const image2 = new Texture('images/image2.png')
 const image3 = new Texture('images/submit.png')
+const image4 = new Texture('images/card.png')
+const image5 = new Texture('images/close.png')
 const canvas = new UICanvas()
 
 
@@ -164,7 +166,7 @@ Polkaclose.positionY = 10
 Polkaclose.positionX = 200
 Polkaclose.sourceWidth = 75
 Polkaclose.sourceHeight = 75
-Polkaclose.visible = true
+Polkaclose.visible = false
 
 const Polkago = new UIImage(canvas, imageTexture)
 Polkago.width = 40
@@ -420,19 +422,6 @@ land3.addComponent(
     openExternalURL("https://discord.gg/GJ7EdhFucj")
   },
     { hoverText: "Rent this 3x2 LAND for your project!",
-    distance: 50, }
-)
-)
-
-const table = new Entity();
-engine.addEntity(table);
-table.addComponent(new GLTFShape("models/table.glb"));
-table.addComponent(new Transform({ position: new Vector3(40, 0, 20) }));
-table.addComponent(
-  new OnPointerDown(() => {
-
-  },
-    { hoverText: "Uno goes here!",
     distance: 50, }
 )
 )
@@ -726,4 +715,46 @@ polka.addComponent(
     { hoverText: "Click here to get started!",
     distance: 90, }
 )
+)
+
+const table = new Entity();
+engine.addEntity(table);
+table.addComponent(new GLTFShape("models/table.glb"));
+table.addComponent(new Transform({ position: new Vector3(40, 0, 20) }));
+table.addComponent(
+  new OnPointerDown(() => {
+      unotable.visible = true
+      unoclose.visible = true
+  },
+    { hoverText: "Cards table goes here!",
+    distance: 50, }
+)
+)
+
+const unotable = new UIImage(canvas, image4)
+unotable.width = 1145
+unotable.height = 650
+unotable.hAlign = "left"
+unotable.vAlign = "top"
+unotable.positionY = 10
+unotable.positionX = 200
+unotable.sourceWidth = 1145
+unotable.sourceHeight = 650
+unotable.visible = false
+
+const unoclose = new UIImage(canvas, image5)
+unoclose.width = 76
+unoclose.height = 76
+unoclose.hAlign = "left"
+unoclose.vAlign = "top"
+unoclose.positionY = 10
+unoclose.positionX = 200
+unoclose.sourceWidth = 75
+unoclose.sourceHeight = 75
+unoclose.visible = false
+
+unoclose.onClick = new OnClick(() => {
+  unoclose.visible = false
+  unotable.visible = false
+  }
 )
