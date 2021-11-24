@@ -2,12 +2,21 @@ import utils from '../node_modules/decentraland-ecs-utils/index'
 import * as RestrictedActions from '@decentraland/RestrictedActions'
 import { movePlayerTo } from '@decentraland/RestrictedActions'
 
-
 const imageTexture = new Texture('images/UI_Guestbook.png')
 const image2 = new Texture('images/image2.png')
 const image3 = new Texture('images/submit.png')
 const canvas = new UICanvas()
 
+const socket = new WebSocket('wss://137-184-85-69.nip.io/broadcast')
+socket.onmessage = function (event) {
+  try {
+    const parsed = JSON.parse(event.data)
+    log(parsed)
+    // DO SOMETHING WITH INPUT
+  } catch (error) {
+    log(error)
+  }
+}
 
 const inventoryContainer = new UIContainerStack(canvas)
 inventoryContainer.adaptWidth = true
@@ -670,7 +679,13 @@ b1.addComponent(new Transform({ position: new Vector3(30, 8, 78), scale: new Vec
 
 b1.addComponent(
   new OnPointerDown(() => {
-    openExternalURL("https://github.com/ERC20s/key")
+    // openExternalURL("https://github.com/ERC20s/key")
+    
+  socket.send(
+    JSON.stringify({
+      msg: "*************** new message ******************"
+    })
+  )
   },
     { hoverText: "Check out our github. ",
     distance: 60, }
