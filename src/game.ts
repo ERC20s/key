@@ -717,11 +717,11 @@ polka.addComponent(
     a3.addComponent(new GLTFShape("models/acala.glb"));
     a6.addComponent(new GLTFShape("models/moonbeam.glb"));
 
-    Polkaexplainer.visible = true
+    Polkaexplainer.visible = false
     Submitbutton.visible = false
-    textInput.visible = true
-    Polkago.visible = true
-    Polkaclose.visible = true
+    textInput.visible = false
+    Polkago.visible = false
+    Polkaclose.visible = false
   },
     { hoverText: "Click here to get started!",
     distance: 90, }
