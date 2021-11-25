@@ -645,9 +645,9 @@ a6.addComponent(new Transform({ position: new Vector3(45, 8, 2), scale: new Vect
 
 a6.addComponent(
   new OnPointerDown(() => {
-    openExternalURL("https://crowdloan.parallel.fi/#/auction/contribute/polkadot/2004?referral=0xe409a59954c942fd4d6009c5042e112c63fa03e51fe644037c109eadafd258a2")
+    openExternalURL("https://moonbeam.network")
   },
-    { hoverText: "Lock 5 DOT on Moonbeam to get an NFT",
+    { hoverText: "Moonbeam have closed their crowdloan",
     distance: 60, }
 )
 )
