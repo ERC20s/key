@@ -806,7 +806,7 @@ unocards.positionY = 10
 unocards.positionX = 400
 unocards.sourceWidth = 407
 unocards.sourceHeight = 142
-unocards.visible = true
+unocards.visible = false
 
 unocards.onClick = new OnClick(() => {
   unocards.visible = false
