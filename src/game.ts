@@ -8,6 +8,7 @@ const image2 = new Texture('images/image2.png')
 const image3 = new Texture('images/submit.png')
 const image4 = new Texture('images/card.png')
 const image5 = new Texture('images/close.png')
+const image6 = new Texture('images/cards.png')
 const canvas = new UICanvas()
 
 
@@ -723,16 +724,15 @@ table.addComponent(new GLTFShape("models/table.glb"));
 table.addComponent(new Transform({ position: new Vector3(40, 0, 20) }));
 table.addComponent(
   new OnPointerDown(() => {
-      unotable.visible = true
-      unoclose.visible = true
+
+      unocenter.getComponent(GLTFShape).visible = true
   },
-    { hoverText: "Cards table goes here!",
+    { hoverText: "Click to start",
     distance: 50, }
 )
 )
 
 const unocenter = new Entity();
-engine.addEntity(unocenter);
 unocenter.addComponent(new GLTFShape("models/center.glb"));
 unocenter.addComponent(new Transform({ position: new Vector3(40, 0, 20) }));
 unocenter.addComponent(
@@ -743,16 +743,45 @@ unocenter.addComponent(
     distance: 50, }
 )
 )
+engine.addEntity(unocenter);
+unocenter.getComponent(GLTFShape).visible = false
 
 const unocard = new Entity();
 engine.addEntity(unocard);
 unocard.addComponent(new GLTFShape("models/card.glb"));
-unocard.addComponent(new Transform({ position: new Vector3(42, 0, 20) }));
+unocard.addComponent(new Transform({ position: new Vector3(42, 0.9, 20), rotation: Quaternion.Euler(0, 0, 90) }));
 unocard.addComponent(
+  new OnPointerDown(() => {
+    unocards.visible = true
+    unoclose.visible = true
+  },
+    { hoverText: "Your cards",
+    distance: 50, }
+)
+)
+
+const unocard2 = new Entity();
+engine.addEntity(unocard2);
+unocard2.addComponent(new GLTFShape("models/card.glb"));
+unocard2.addComponent(new Transform({ position: new Vector3(40, 0.9, 22), rotation: Quaternion.Euler(0, 90, 90) }));
+unocard2.addComponent(
   new OnPointerDown(() => {
 
   },
-    { hoverText: "Card1",
+    { hoverText: "(2 cards)",
+    distance: 50, }
+)
+)
+
+const unocard3 = new Entity();
+engine.addEntity(unocard3);
+unocard3.addComponent(new GLTFShape("models/card.glb"));
+unocard3.addComponent(new Transform({ position: new Vector3(38, 0.9, 20), rotation: Quaternion.Euler(0, 0, 90) }));
+unocard3.addComponent(
+  new OnPointerDown(() => {
+
+  },
+    { hoverText: "(3 cards)",
     distance: 50, }
 )
 )
@@ -768,19 +797,35 @@ unotable.sourceWidth = 1145
 unotable.sourceHeight = 650
 unotable.visible = false
 
+const unocards = new UIImage(canvas, image6)
+unocards.width = 407
+unocards.height = 142
+unocards.hAlign = "left"
+unocards.vAlign = "bottom"
+unocards.positionY = 10
+unocards.positionX = 400
+unocards.sourceWidth = 407
+unocards.sourceHeight = 142
+unocards.visible = true
+
+unocards.onClick = new OnClick(() => {
+  unocards.visible = false
+  }
+)
+
 const unoclose = new UIImage(canvas, image5)
 unoclose.width = 76
 unoclose.height = 76
 unoclose.hAlign = "left"
-unoclose.vAlign = "top"
+unoclose.vAlign = "bottom"
 unoclose.positionY = 10
-unoclose.positionX = 200
+unoclose.positionX = 300
 unoclose.sourceWidth = 75
 unoclose.sourceHeight = 75
 unoclose.visible = false
 
 unoclose.onClick = new OnClick(() => {
   unoclose.visible = false
-  unotable.visible = false
+  unocards.visible = false
   }
 )
