@@ -731,6 +731,32 @@ table.addComponent(
 )
 )
 
+const unocenter = new Entity();
+engine.addEntity(unocenter);
+unocenter.addComponent(new GLTFShape("models/center.glb"));
+unocenter.addComponent(new Transform({ position: new Vector3(40, 0, 20) }));
+unocenter.addComponent(
+  new OnPointerDown(() => {
+
+  },
+    { hoverText: "Click to pick up a card",
+    distance: 50, }
+)
+)
+
+const unocard = new Entity();
+engine.addEntity(unocard);
+unocard.addComponent(new GLTFShape("models/card.glb"));
+unocard.addComponent(new Transform({ position: new Vector3(41.5, 0, 20) }));
+unocard.addComponent(
+  new OnPointerDown(() => {
+
+  },
+    { hoverText: "Card1",
+    distance: 50, }
+)
+)
+
 const unotable = new UIImage(canvas, image4)
 unotable.width = 1145
 unotable.height = 650
