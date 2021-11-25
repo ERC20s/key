@@ -747,7 +747,7 @@ unocenter.addComponent(
 const unocard = new Entity();
 engine.addEntity(unocard);
 unocard.addComponent(new GLTFShape("models/card.glb"));
-unocard.addComponent(new Transform({ position: new Vector3(41.5, 0, 20) }));
+unocard.addComponent(new Transform({ position: new Vector3(42, 0, 20) }));
 unocard.addComponent(
   new OnPointerDown(() => {
 
