@@ -1,24 +1,66 @@
 import utils from '../node_modules/decentraland-ecs-utils/index'
 import * as RestrictedActions from '@decentraland/RestrictedActions'
 import { movePlayerTo } from '@decentraland/RestrictedActions'
+import { joinSocketServer } from './wsConnection'
+
+import { World } from './world'
+import { UNO } from './uno'
+
+export let sceneStarted = false
+export let world: World
+export let uno: UNO
 
 const imageTexture = new Texture('images/UI_Guestbook.png')
 const image2 = new Texture('images/image2.png')
 const image3 = new Texture('images/submit.png')
 const image4 = new Texture('images/card.png')
 const image5 = new Texture('images/close.png')
+const image6 = new Texture('images/cards.png')
 const canvas = new UICanvas()
 
-const socket = new WebSocket('wss://137-184-85-69.nip.io/broadcast')
-socket.onmessage = function (event) {
-  try {
-    const parsed = JSON.parse(event.data)
-    log(parsed)
-    // DO SOMETHING WITH INPUT
-  } catch (error) {
-    log(error)
-  }
+async function setUpScene() {
+  let socket: WebSocket = await joinSocketServer()
+
+  world = new World(
+    new Transform({ position: new Vector3(0, 0, 0) }),
+    socket
+  )
+
+  uno = new UNO(
+    0,
+    new Transform({ position: new Vector3(40, 0, 20) }),
+    socket,
+    world
+  )
+
 }
+
+let uiArea = new Entity()
+uiArea.addComponent(
+  new Transform({
+    position: new Vector3(16, 0, 16),
+  })
+)
+engine.addEntity(uiArea)
+
+uiArea.addComponent(
+  new utils.TriggerComponent(
+    new utils.TriggerBoxShape(new Vector3(32, 32, 32), Vector3.Zero()),
+    {
+      onCameraEnter: () => {
+        if (!sceneStarted) {
+          log('scene started')
+          setUpScene()
+          sceneStarted = true
+        }
+      },
+      onCameraExit: () => {
+      },
+    }
+  )
+)
+
+
 
 const inventoryContainer = new UIContainerStack(canvas)
 inventoryContainer.adaptWidth = true
@@ -304,15 +346,6 @@ const songs: { src: string; name: string }[] = [
   { src: 'sounds/hous.mp3', name: 'House' }
 ]
 
-const wall = new Entity();
-engine.addEntity(wall);
-wall.addComponent(new GLTFShape("models/walls6.glb"));
-wall.addComponent(new Transform({ position: new Vector3(0, 0, 0) }));
-
-
-
-
-
 let buttonArray: IEntity[] = []
 
 for (let i = 0; i < songs.length; i++) {
@@ -336,7 +369,7 @@ for (let i = 0; i < songs.length; i++) {
   )
   buttonArray[i] = new Entity()
 
-  buttonArray[i].setParent(wall)
+  // buttonArray[i].setParent(world.wall)
   buttonArray[i].addComponent(
     new utils.ToggleComponent(utils.ToggleState.Off, value => {
       if (value == utils.ToggleState.On) {
@@ -618,96 +651,6 @@ closetv.setParent(Attachable.AVATAR)
 // )
 //
 // engine.addEntity(screen2)
-const a3 = new Entity();
-engine.addEntity(a3);
-
-a3.addComponent(new Transform({ position: new Vector3(30, 8, 2), scale: new Vector3(6, 6, 1), rotation: Quaternion.Euler(0, 0, 0) }));
-
-a3.addComponent(
-  new OnPointerDown(() => {
-    openExternalURL("https://acala.network/acala/join-acala?ref=0x460d775411d658e708fefe35ad4f0ba2d59aef2e59a22e334bb2aad2e983f86e")
-  },
-    { hoverText: "ACALA won the first parachain slot on polkadot!",
-    distance: 60, }
-)
-)
-
-const a4 = new Entity();
-engine.addEntity(a4);
-
-a4.addComponent(new Transform({ position: new Vector3(15, 8, 2), scale: new Vector3(6, 6, 1), rotation: Quaternion.Euler(0, 0, 0) }));
-
-a4.addComponent(
-  new OnPointerDown(() => {
-    openExternalURL("https://crowdloan.astar.network/?referral=1Hi73C8EuTjhJ2MsSppYH2qTbQFbJHrG9E9cUhzorYZHZ97#/")
-  },
-    { hoverText: "Lock 5 DOT on ASTAR to get an NFT",
-    distance: 60, }
-)
-)
-
-const a6 = new Entity();
-engine.addEntity(a6);
-
-a6.addComponent(new Transform({ position: new Vector3(45, 8, 2), scale: new Vector3(6, 6, 1), rotation: Quaternion.Euler(0, 0, 0) }));
-
-a6.addComponent(
-  new OnPointerDown(() => {
-    openExternalURL("https://crowdloan.parallel.fi/#/auction/contribute/polkadot/2004?referral=0xe409a59954c942fd4d6009c5042e112c63fa03e51fe644037c109eadafd258a2")
-  },
-    { hoverText: "Lock 5 DOT on Moonbeam to get an NFT",
-    distance: 60, }
-)
-)
-
-
-const b1 = new Entity();
-engine.addEntity(b1);
-b1.addComponent(new GLTFShape("models/github.glb"))
-b1.addComponent(new Transform({ position: new Vector3(30, 8, 78), scale: new Vector3(3, 3, 1), rotation: Quaternion.Euler(0, 0, 0) }));
-
-b1.addComponent(
-  new OnPointerDown(() => {
-    // openExternalURL("https://github.com/ERC20s/key")
-    
-  socket.send(
-    JSON.stringify({
-      msg: "*************** new message ******************"
-    })
-  )
-  },
-    { hoverText: "Check out our github. ",
-    distance: 60, }
-)
-)
-
-const b2 = new Entity();
-engine.addEntity(b2);
-b2.addComponent(new GLTFShape("models/discord.glb"))
-b2.addComponent(new Transform({ position: new Vector3(15, 8, 78), scale: new Vector3(3, 3, 1), rotation: Quaternion.Euler(0, 0, 0) }));
-
-b2.addComponent(
-  new OnPointerDown(() => {
-    openExternalURL("https://discord.gg/DdjsQpuEuH")
-  },
-    { hoverText: "Check out our discord community.",
-    distance: 60, }
-)
-)
-
-const b3 = new Entity();
-engine.addEntity(b3);
-b3.addComponent(new GLTFShape("models/telegram.glb"))
-b3.addComponent(new Transform({ position: new Vector3(45, 8, 78), scale: new Vector3(3, 3, 1), rotation: Quaternion.Euler(0, 0, 0) }));
-
-b3.addComponent(
-  new OnPointerDown(() => {
-    openExternalURL("https://t.me/unofficialASTAR")
-  },
-    { hoverText: "Check out our telegram community.",
-    distance: 60, }
-)
-)
 
 const polka = new Entity();
 engine.addEntity(polka);
@@ -716,10 +659,6 @@ polka.addComponent(new Transform({ position: new Vector3(40, 5, 40), scale: new 
 
 polka.addComponent(
   new OnPointerDown(() => {
-
-    a4.addComponent(new GLTFShape("models/astar2.glb"));
-    a3.addComponent(new GLTFShape("models/acala.glb"));
-    a6.addComponent(new GLTFShape("models/moonbeam.glb"));
 
     Polkaexplainer.visible = false
     Submitbutton.visible = false
@@ -732,16 +671,57 @@ polka.addComponent(
 )
 )
 
-const table = new Entity();
-engine.addEntity(table);
-table.addComponent(new GLTFShape("models/table.glb"));
-table.addComponent(new Transform({ position: new Vector3(40, 0, 20) }));
-table.addComponent(
+
+const unocenter = new Entity();
+unocenter.addComponent(new GLTFShape("models/center.glb"));
+unocenter.addComponent(new Transform({ position: new Vector3(40, 0, 20) }));
+unocenter.addComponent(
   new OnPointerDown(() => {
-      unotable.visible = true
-      unoclose.visible = true
+
   },
-    { hoverText: "Cards table goes here!",
+    { hoverText: "Click to pick up a card",
+    distance: 50, }
+)
+)
+engine.addEntity(unocenter);
+unocenter.getComponent(GLTFShape).visible = false
+
+const unocard = new Entity();
+engine.addEntity(unocard);
+unocard.addComponent(new GLTFShape("models/card.glb"));
+unocard.addComponent(new Transform({ position: new Vector3(42, 0.9, 20), rotation: Quaternion.Euler(0, 0, 90) }));
+unocard.addComponent(
+  new OnPointerDown(() => {
+    unocards.visible = true
+    unoclose.visible = true
+  },
+    { hoverText: "Your cards",
+    distance: 50, }
+)
+)
+
+const unocard2 = new Entity();
+engine.addEntity(unocard2);
+unocard2.addComponent(new GLTFShape("models/card.glb"));
+unocard2.addComponent(new Transform({ position: new Vector3(40, 0.9, 22), rotation: Quaternion.Euler(0, 90, 90) }));
+unocard2.addComponent(
+  new OnPointerDown(() => {
+
+  },
+    { hoverText: "(2 cards)",
+    distance: 50, }
+)
+)
+
+const unocard3 = new Entity();
+engine.addEntity(unocard3);
+unocard3.addComponent(new GLTFShape("models/card.glb"));
+unocard3.addComponent(new Transform({ position: new Vector3(38, 0.9, 20), rotation: Quaternion.Euler(0, 0, 90) }));
+unocard3.addComponent(
+  new OnPointerDown(() => {
+
+  },
+    { hoverText: "(3 cards)",
     distance: 50, }
 )
 )
@@ -757,19 +737,35 @@ unotable.sourceWidth = 1145
 unotable.sourceHeight = 650
 unotable.visible = false
 
+const unocards = new UIImage(canvas, image6)
+unocards.width = 407
+unocards.height = 142
+unocards.hAlign = "left"
+unocards.vAlign = "bottom"
+unocards.positionY = 10
+unocards.positionX = 400
+unocards.sourceWidth = 407
+unocards.sourceHeight = 142
+unocards.visible = false
+
+unocards.onClick = new OnClick(() => {
+  unocards.visible = false
+  }
+)
+
 const unoclose = new UIImage(canvas, image5)
 unoclose.width = 76
 unoclose.height = 76
 unoclose.hAlign = "left"
-unoclose.vAlign = "top"
+unoclose.vAlign = "bottom"
 unoclose.positionY = 10
-unoclose.positionX = 200
+unoclose.positionX = 300
 unoclose.sourceWidth = 75
 unoclose.sourceHeight = 75
 unoclose.visible = false
 
 unoclose.onClick = new OnClick(() => {
   unoclose.visible = false
-  unotable.visible = false
+  unocards.visible = false
   }
 )
