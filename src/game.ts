@@ -430,44 +430,6 @@ moon.addComponent(
   )
 )
 
-const land1 = new Entity()
-engine.addEntity(land1)
-land1.addComponent(new GLTFShape("models/land1.glb"))
-land1.addComponent(new Transform({ position: new Vector3(190, 1, 79), rotation: Quaternion.Euler(0, 90, 0) }));
-land1.addComponent(
-  new OnPointerDown(() => {
-    openExternalURL("https://discord.gg/GJ7EdhFucj")
-  },
-    { hoverText: "Rent this 3x2 LAND for your project!",
-    distance: 50, }
-)
-)
-
-const land2 = new Entity()
-engine.addEntity(land2)
-land2.addComponent(new GLTFShape("models/land1.glb"))
-land2.addComponent(new Transform({ position: new Vector3(219, 1, 33), rotation: Quaternion.Euler(0, 180, 0) }));
-land2.addComponent(
-  new OnPointerDown(() => {
-    openExternalURL("https://discord.gg/GJ7EdhFucj")
-  },
-    { hoverText: "Rent this 3x2 LAND for your project!",
-    distance: 50, }
-)
-)
-const land3 = new Entity()
-engine.addEntity(land3)
-land3.addComponent(new GLTFShape("models/land1.glb"))
-land3.addComponent(new Transform({ position: new Vector3(180, 1, 1), rotation: Quaternion.Euler(0, 270, 0) }));
-land3.addComponent(
-  new OnPointerDown(() => {
-    openExternalURL("https://discord.gg/GJ7EdhFucj")
-  },
-    { hoverText: "Rent this 3x2 LAND for your project!",
-    distance: 50, }
-)
-)
-
 
 let p = 0
 
@@ -768,4 +730,18 @@ unoclose.onClick = new OnClick(() => {
   unoclose.visible = false
   unocards.visible = false
   }
+)
+
+const machine = new Entity();
+engine.addEntity(machine);
+machine.addComponent(new GLTFShape("models/machine.glb"));
+machine.addComponent(new Transform({ position: new Vector3(40, 0, 66), scale: new Vector3(1, 1, 1), rotation: Quaternion.Euler(0, 90, 0) }));
+
+machine.addComponent(
+  new OnPointerDown(() => {
+
+  },
+    { hoverText: "To the moon!",
+    distance: 50, }
+)
 )
