@@ -443,7 +443,7 @@ a2.addComponent(
     a2.removeComponent(GLTFShape)
     a25.addComponent(new GLTFShape("models/polkadot.glb"))
     p = p + 1;
-    if (p > 10)
+    if (p > 5)
 {
         moon.addComponent(new GLTFShape("models/moon.gltf"))
 }
@@ -735,7 +735,7 @@ unoclose.onClick = new OnClick(() => {
 const machine = new Entity();
 engine.addEntity(machine);
 machine.addComponent(new GLTFShape("models/machine.glb"));
-machine.addComponent(new Transform({ position: new Vector3(40, 0, 66), scale: new Vector3(1, 1, 1), rotation: Quaternion.Euler(0, 90, 0) }));
+machine.addComponent(new Transform({ position: new Vector3(63, 0, 52), scale: new Vector3(1, 1, 1), rotation: Quaternion.Euler(0, 270, 0) }));
 
 machine.addComponent(
   new OnPointerDown(() => {
