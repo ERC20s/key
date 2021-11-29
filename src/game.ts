@@ -357,7 +357,7 @@ for (let i = 0; i < songs.length; i++) {
   engine.addEntity(key);
   key.addComponent(audioSource)
   key.addComponent(new GLTFShape("models/key.glb"));
-  key.addComponent(new Transform({ position: new Vector3(0, 20, 0)}));
+  key.addComponent(new Transform({ position: new Vector3(0, 22, 0)}));
 
   key.addComponent(
     new OnPointerDown(() => {
@@ -430,7 +430,7 @@ moon.addComponent(
   )
 )
 
-
+moon.addComponent(new GLTFShape("models/moon.gltf"))
 let p = 0
 
 const a2 = new Entity();
