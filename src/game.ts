@@ -364,7 +364,7 @@ for (let i = 0; i < songs.length; i++) {
       openExternalURL("https://medium.com/we-are-talisman")
     },
       { hoverText: "We are talisman !",
-      distance: 130, }
+      distance: 40, }
   )
   )
   buttonArray[i] = new Entity()
@@ -423,7 +423,7 @@ moon.addComponent(new Transform({ position: new Vector3(2, 22, 2), rotation: Qua
 moon.addComponent(
   new OnPointerDown(
     (_e) => {
-      RestrictedActions.movePlayerTo({ x: 40, y: 399, z: 40 }, { x: 1, y: 599, z: 40 })
+      RestrictedActions.movePlayerTo({ x: 170, y: 88, z: 50 }, { x: 178, y: 88, z: 50 })
     },
     { hoverText: "To the moon!",
     distance: 150,  }
@@ -431,6 +431,23 @@ moon.addComponent(
 )
 
 moon.addComponent(new GLTFShape("models/moon.gltf"))
+
+const moon2 = new Entity()
+engine.addEntity(moon2)
+
+moon2.addComponent(new Transform({ position: new Vector3(2, 44, 2), rotation: Quaternion.Euler(0, 180, 180) }));
+moon2.addComponent(
+  new OnPointerDown(
+    (_e) => {
+      RestrictedActions.movePlayerTo({ x: 60, y: 1, z: 40 }, { x: 55, y: 1, z: 40 })
+    },
+    { hoverText: "To the moon!",
+    distance: 150,  }
+  )
+)
+
+moon2.addComponent(new GLTFShape("models/moon.gltf"))
+
 let p = 0
 
 const a2 = new Entity();
@@ -739,9 +756,193 @@ machine.addComponent(new Transform({ position: new Vector3(63, 0, 52), scale: ne
 
 machine.addComponent(
   new OnPointerDown(() => {
-
+            openExternalURL('https://apps.standard.tech/trade')
   },
-    { hoverText: "To the moon!",
+    { hoverText: "To the DEX!",
     distance: 50, }
 )
 )
+
+
+
+const art1 = new Entity()
+const shapeComponent1 = new NFTShape(
+  "ethereum://0xd07dc4262bcdbf85190c01c996b4c06a461d2430/514617"
+)
+art1.addComponent(shapeComponent1)
+art1.addComponent(
+  new Transform({
+    position: new Vector3(220, 22, 40), scale: new Vector3(20, 20, 20), rotation: Quaternion.Euler(0, 90, 0)
+  })
+)
+art1.addComponent(
+  new OnPointerDown(() => {
+        openNFTDialog(
+          "ethereum://0xd07dc4262bcdbf85190c01c996b4c06a461d2430/514617",
+          "Sup bro!"
+    )
+  },
+    { hoverText: "Sup!",
+    distance: 50, }
+)
+)
+engine.addEntity(art1)
+
+const art2 = new Entity()
+const shapeComponent2 = new NFTShape(
+  "ethereum://0xd07dc4262bcdbf85190c01c996b4c06a461d2430/515837"
+)
+art2.addComponent(shapeComponent2)
+art2.addComponent(
+  new Transform({
+    position: new Vector3(184, 22, 4), scale: new Vector3(20, 20, 20), rotation: Quaternion.Euler(0, 180, 0)
+  })
+)
+art2.addComponent(
+  new OnPointerDown(() => {
+        openNFTDialog(
+          "ethereum://0xd07dc4262bcdbf85190c01c996b4c06a461d2430/515837",
+          "Sup bro!"
+    )
+  },
+    { hoverText: "Sup!",
+    distance: 50, }
+)
+)
+engine.addEntity(art2)
+
+const art3 = new Entity()
+const shapeComponent3 = new NFTShape(
+  "ethereum://0x60f80121c31a0d46b5279700f9df786054aa5ee5/885407"
+)
+art3.addComponent(shapeComponent3)
+art3.addComponent(
+  new Transform({
+    position: new Vector3(184, 22, 76), scale: new Vector3(20, 20, 20), rotation: Quaternion.Euler(0, 0, 0)
+  })
+)
+art3.addComponent(
+  new OnPointerDown(() => {
+        openNFTDialog(
+          "ethereum://0x60f80121c31a0d46b5279700f9df786054aa5ee5/885407",
+          "Sup bro!"
+    )
+  },
+    { hoverText: "Sup!",
+    distance: 50, }
+)
+)
+engine.addEntity(art3)
+
+const art4 = new Entity()
+const shapeComponent4 = new NFTShape(
+  "ethereum://0xd07dc4262bcdbf85190c01c996b4c06a461d2430/515830"
+)
+art4.addComponent(shapeComponent4)
+art4.addComponent(
+  new Transform({
+    position: new Vector3(148, 22, 40), scale: new Vector3(20, 20, 20), rotation: Quaternion.Euler(0, 270, 0)
+  })
+)
+art4.addComponent(
+  new OnPointerDown(() => {
+        openNFTDialog(
+          "ethereum://0xd07dc4262bcdbf85190c01c996b4c06a461d2430/515830",
+          "Sup bro!"
+    )
+  },
+    { hoverText: "Sup!",
+    distance: 50, }
+)
+)
+engine.addEntity(art4)
+
+const nft1 = new Entity()
+const shapeComponen1 = new NFTShape(
+  "ethereum://0x2a187453064356c898cae034eaed119e1663acb8/22373925882915919619496009708338558626378207558949455286532190530141407025761"
+)
+nft1.addComponent(shapeComponen1)
+nft1.addComponent(
+  new Transform({
+    position: new Vector3(220, 54, 40), scale: new Vector3(20, 20, 20), rotation: Quaternion.Euler(0, 90, 0)
+  })
+)
+nft1.addComponent(
+  new OnPointerDown(() => {
+        openNFTDialog(
+          "ethereum://0x2a187453064356c898cae034eaed119e1663acb8/22373925882915919619496009708338558626378207558949455286532190530141407025761"
+    )
+  },
+    { hoverText: "WWW.DCL.ETH!",
+    distance: 50, }
+)
+)
+engine.addEntity(nft1)
+
+const nft2 = new Entity()
+const shapeComponen2 = new NFTShape(
+  "ethereum://0x2a187453064356c898cae034eaed119e1663acb8/30538060810248286337197368324767358068684471101195312913479801860464099390851"
+)
+nft2.addComponent(shapeComponen2)
+nft2.addComponent(
+  new Transform({
+    position: new Vector3(184, 54, 4), scale: new Vector3(20, 20, 20), rotation: Quaternion.Euler(0, 180, 0)
+  })
+)
+nft2.addComponent(
+  new OnPointerDown(() => {
+        openNFTDialog(
+          "ethereum://0x2a187453064356c898cae034eaed119e1663acb8/30538060810248286337197368324767358068684471101195312913479801860464099390851"
+    )
+  },
+    { hoverText: "360!",
+    distance: 50, }
+)
+)
+engine.addEntity(nft2)
+
+const nft3 = new Entity()
+const shapeComponen3 = new NFTShape(
+  "ethereum://0x2a187453064356c898cae034eaed119e1663acb8/2296137122236012602773389216365011483172108331892633386099895240950329372009"
+)
+nft3.addComponent(shapeComponen3)
+nft3.addComponent(
+  new Transform({
+    position: new Vector3(184, 54, 76), scale: new Vector3(20, 20, 20), rotation: Quaternion.Euler(0, 0, 0)
+  })
+)
+nft3.addComponent(
+  new OnPointerDown(() => {
+        openNFTDialog(
+          "ethereum://0x2a187453064356c898cae034eaed119e1663acb8/2296137122236012602773389216365011483172108331892633386099895240950329372009",
+          "Sup bro!"
+    )
+  },
+    { hoverText: "Gov!",
+    distance: 50, }
+)
+)
+engine.addEntity(nft3)
+
+const nft4 = new Entity()
+const shapeComponen4 = new NFTShape(
+  "ethereum://0x2a187453064356c898cae034eaed119e1663acb8/111408104801650988245763821523320138181560109939728249419324308590678131031398"
+)
+nft4.addComponent(shapeComponen4)
+nft4.addComponent(
+  new Transform({
+    position: new Vector3(148, 54, 40), scale: new Vector3(20, 20, 20), rotation: Quaternion.Euler(0, 270, 0)
+  })
+)
+nft4.addComponent(
+  new OnPointerDown(() => {
+        openNFTDialog(
+          "ethereum://0x2a187453064356c898cae034eaed119e1663acb8/111408104801650988245763821523320138181560109939728249419324308590678131031398",
+          "Sup bro!"
+    )
+  },
+    { hoverText: "sup!",
+    distance: 50, }
+)
+)
+engine.addEntity(nft4)
