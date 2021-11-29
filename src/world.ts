@@ -4,22 +4,22 @@ import { movePlayerTo } from '@decentraland/RestrictedActions'
 import { SingleCardUI } from './singleCardUI'
 
 export class World extends Entity {
-  
+
   socket: WebSocket
-  
+
   wall = new Entity()
-  
+
   socialGithub = new Entity()
   socialDiscord = new Entity()
   socialTelegram = new Entity()
-  
+
   polka = new Entity()
 
   uiCanvas = new UICanvas()
   playerCards: SingleCardUI[] = []
 
   uiElements: UIShape[] = []
-  
+
   constructor(transform: Transform, socket: WebSocket) {
     super()
     this.socket = socket
@@ -54,13 +54,13 @@ export class World extends Entity {
       this.uiElements[i].visible = visible
     }
   }
-  
+
   initWall() {
     this.wall.addComponent(new GLTFShape("models/walls6.glb"))
     this.wall.addComponent(new Transform({ position: new Vector3(0, 0, 0) }))
     this.wall.setParent(this)
   }
-  
+
   initSocial() {
     /** Github */
     this.socialGithub.addComponent(new GLTFShape("models/github.glb"))
@@ -74,7 +74,7 @@ export class World extends Entity {
       })
       )
     this.socialGithub.setParent(this)
-      
+
     this.socialDiscord.addComponent(new GLTFShape("models/discord.glb"))
     this.socialDiscord.addComponent(new Transform({ position: new Vector3(15, 8, 78), scale: new Vector3(3, 3, 1), rotation: Quaternion.Euler(0, 0, 0) }));
     this.socialDiscord.addComponent(
@@ -86,7 +86,7 @@ export class World extends Entity {
       })
     )
     this.socialDiscord.setParent(this)
-    
+
     this.socialTelegram.addComponent(new GLTFShape("models/telegram.glb"))
     this.socialTelegram.addComponent(new Transform({ position: new Vector3(45, 8, 78), scale: new Vector3(3, 3, 1), rotation: Quaternion.Euler(0, 0, 0) }));
     this.socialTelegram.addComponent(
@@ -99,15 +99,15 @@ export class World extends Entity {
     )
     this.socialTelegram.setParent(this)
   }
-    
+
   initVideo() {
-    
+
   }
-  
+
   initPolka() {
-    
+
   }
-  
+
   initExternal() {
     const external1 = new Entity();
     const external2 = new Entity();
@@ -117,8 +117,8 @@ export class World extends Entity {
     external1.addComponent(
       new OnPointerDown(() => {
         openExternalURL("https://crowdloan.astar.network/?referral=1Hi73C8EuTjhJ2MsSppYH2qTbQFbJHrG9E9cUhzorYZHZ97#/")
-      }, { 
-        hoverText: "Lock 5 DOT on ASTAR to get an NFT",
+      }, {
+        hoverText: "Lock DOT through ASTAR to get an NFT",
         distance: 60
       })
     )
@@ -129,8 +129,8 @@ export class World extends Entity {
     external2.addComponent(
       new OnPointerDown(() => {
         openExternalURL("https://acala.network/acala/join-acala?ref=0x460d775411d658e708fefe35ad4f0ba2d59aef2e59a22e334bb2aad2e983f86e")
-      }, { 
-        hoverText: "Lock 5 DOT on Moonbeam to get an NFT",
+      }, {
+        hoverText: "Acala won the first parachain slot!",
         distance: 60
       })
     )
@@ -141,8 +141,8 @@ export class World extends Entity {
     external3.addComponent(
       new OnPointerDown(() => {
         openExternalURL("https://crowdloan.parallel.fi/#/auction/contribute/polkadot/2004?referral=0xe409a59954c942fd4d6009c5042e112c63fa03e51fe644037c109eadafd258a2")
-      }, { 
-        hoverText: "Lock 5 DOT on Moonbeam to get an NFT",
+      }, {
+        hoverText: "Moonbeam won the 2nd parachain slot!",
         distance: 60
       })
     )
