@@ -506,7 +506,7 @@ myVideoTexture.playing = !myVideoTexture.playing
 const myVideoClip = new VideoClip("https://dclstreams.com/hosted/live/butter/index.m3u8")
 
 const myVideoTexture = new VideoTexture(myVideoClip)
-myVideoTexture.playing = false
+myVideoTexture.playing = true
 // #3
 const myMaterial = new BasicMaterial()
 myMaterial.texture = myVideoTexture
@@ -751,8 +751,8 @@ unoclose.onClick = new OnClick(() => {
 
 const machine = new Entity();
 engine.addEntity(machine);
-machine.addComponent(new GLTFShape("models/machine.glb"));
-machine.addComponent(new Transform({ position: new Vector3(63, 0, 52), scale: new Vector3(1, 1, 1), rotation: Quaternion.Euler(0, 270, 0) }));
+machine.addComponent(new GLTFShape("models/vm2.glb"));
+machine.addComponent(new Transform({ position: new Vector3(62.5, 0, 52), scale: new Vector3(1, 1, 1), rotation: Quaternion.Euler(0, 270, 0) }));
 
 machine.addComponent(
   new OnPointerDown(() => {
