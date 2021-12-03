@@ -751,7 +751,7 @@ unoclose.onClick = new OnClick(() => {
 
 const machine = new Entity();
 engine.addEntity(machine);
-machine.addComponent(new GLTFShape("models/vm2.glb"));
+machine.addComponent(new GLTFShape("models/vmn1.glb"));
 machine.addComponent(new Transform({ position: new Vector3(62.5, 0, 52), scale: new Vector3(1, 1, 1), rotation: Quaternion.Euler(0, 270, 0) }));
 
 machine.addComponent(
