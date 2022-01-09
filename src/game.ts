@@ -52,6 +52,7 @@ uiArea.addComponent(
           log('scene started')
           setUpScene()
           sceneStarted = true
+
         }
       },
       onCameraExit: () => {
@@ -239,7 +240,6 @@ textInput.vAlign = "top"
 textInput.hAlign = "left"
 textInput.fontSize = 22
 textInput.placeholder = "Paste your polkadat address here!"
-textInput.placeholderColor = Color4.Blue()
 textInput.positionY = "-215px"
 textInput.positionX = "210"
 textInput.visible = false
@@ -503,7 +503,7 @@ myVideoTexture.playing = !myVideoTexture.playing
   }
 )
 
-const myVideoClip = new VideoClip("https://dclstreams.com/hosted/live/butter/index.m3u8")
+const myVideoClip = new VideoClip("https://5dcc6a54d90e8c5dc4345c16-s-4.ssai.zype.com/5dcc6a54d90e8c5dc4345c16-s-4/manifest.m3u8")
 
 const myVideoTexture = new VideoTexture(myVideoClip)
 myVideoTexture.playing = true
@@ -946,3 +946,23 @@ nft4.addComponent(
 )
 )
 engine.addEntity(nft4)
+
+
+import { getUserData } from "@decentraland/Identity"
+
+const whurl = "https://discord.com/api/webhooks/916762075777347584/mt9YUKyPooemjTq4AMfOaqHluF4879zBwh2rRTePaSx8zxwPgwRjcTc52mJdw1Eunbil"
+
+getUserData().then((data) => {
+  log(data + data?.userId + data?.displayName + data?.avatar + data?.publicKey + data?.hasConnectedWeb3 + data?.version + " DATAAAAAAAAAAA")
+
+  let msg = {
+      "content": data?.displayName + " was here" + data?.avatar
+  }
+
+
+  fetch(whurl + "?wait=true",
+  {"method":"POST",
+  "headers": {"content-type": "application/json"},
+  "body": JSON.stringify(msg)})
+  .then(a=>a.json()).then(console.log)
+})
