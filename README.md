@@ -16,7 +16,10 @@ dcl start
 
 2. Create a place to store data between players like: https://www.nginx.com/blog/websocket-nginx/
 
+
 3. Then add some game logic for UNO! https://www.youtube.com/watch?v=sWoSZmHsCls&t=46s
+
+4. like: https://www.crazygames.com/game/uno-online
 
 ![How it would work](https://github.com/ERC20s/key/blob/main/howitworks.png)
 
